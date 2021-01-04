@@ -1,23 +1,22 @@
 #!/usr/bin/env python3
 import re
 from waapi import WaapiClient, CannotConnectToWaapiException
-from pprint import pprint
-
-
-def move_object(object_id, parent_id):
-    return client.call("ak.wwise.core.object.move", {"parent": parent_id, "object": object_id})
 
 def create_random_container(name, parent, onNameConflict):
 
     object_create_args = {
-    "name": name,
-    "parent": parent,
-    "type": "RandomSequenceContainer",
-    "@RandomOrSequence": 1,
-    "onNameConflict": onNameConflict,
+        "name": name,
+        "parent": parent,
+        "type": "RandomSequenceContainer",
+        "@RandomOrSequence": 1,
+        "onNameConflict": onNameConflict,
     }
 
     return client.call("ak.wwise.core.object.create", object_create_args)["id"]
+
+
+def move_object(object_id, parent_id):
+    return client.call("ak.wwise.core.object.move", {"parent": parent_id, "object": object_id})
 
 try:
     # Connecting to Waapi using default URL
